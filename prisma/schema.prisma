@@ -8,6 +8,7 @@ datasource db {
   relationMode = "prisma"
 }
 
+//for discord clone
 model Profile {
   id       String @id @default(uuid())
   userId   String @unique
@@ -86,4 +87,15 @@ model Channel {
 
   @@index([profileId])
   @@index([serverId])
+}
+
+//for twitter clone
+model Post {
+    id        String   @id @default(cuid())
+    name      String
+    createdAt DateTime @default(now())
+    content   String   @db.VarChar(255)
+    authorId  String
+
+    @@index([authorId])
 }
